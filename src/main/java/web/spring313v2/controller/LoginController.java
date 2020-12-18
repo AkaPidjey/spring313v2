@@ -16,7 +16,7 @@ import web.spring313v2.service.UserService;
 import java.util.Set;
 
 
-@RestController
+@Controller
 public class LoginController {
 
     @Autowired
@@ -26,34 +26,44 @@ public class LoginController {
     public String login() {
         return "login";
     }
-
-    @GetMapping
-    public String main(Model model, Authentication authentication) {
-        User currentUser = userService.getUserByLogin(authentication.getName()).get();
-        model.addAttribute("currentUser", currentUser);
-        return currentUser.getRoles().size() > 1 ? "admin" : "user";
-    }
-}
-
-//    @GetMapping("/userLogin")
-//    public ModelAndView showUser() {
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("user");
-//        modelAndView.addObject("userLogin", user);
-//        return modelAndView;
+//
+//    @GetMapping(value = {"/admin"})
+//    public String admin() {
+//        return "admin";
 //    }
 //
-//    @GetMapping("/adminLogin")
-//    public ModelAndView showAdmin() {
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("admin");
-//        modelAndView.addObject("usersAll", userService.getAllUsers());
-//        modelAndView.addObject(user);
-//        return modelAndView;
+//    @GetMapping(value = {"/user"})
+//    public String user() {
+//        return "user";
+//    }
+
+//    @GetMapping("/")
+//    public String main(Model model, Authentication authentication) {
+//        User currentUser = userService.getUserByLogin(authentication.getName()).get();
+//        model.addAttribute("currentUser", currentUser);
+//        return currentUser.getRoles().size() > 1 ? "admin" : "user";
 //    }
 
 
+    @GetMapping("/admin")
+    public ModelAndView showUser() {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("user");
+        modelAndView.addObject("userLogin", user);
+        return modelAndView;
+    }
 
+    @GetMapping("/user")
+    public ModelAndView showAdmin() {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("admin");
+        modelAndView.addObject("adminLogin", user);
+        modelAndView.addObject(user);
+        return modelAndView;
+    }
+
+
+}
 

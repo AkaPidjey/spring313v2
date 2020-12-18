@@ -4,7 +4,7 @@ $(document).ready(); {
 }
 
 function getTableUser() {
-    fetch('http://localhost:8088/api/user').then(
+    fetch('http://localhost:8088/api/users/getUser').then(
         response => {
             response.json().then(
                 data => {
@@ -17,13 +17,13 @@ function getTableUser() {
                         '<td>' + data.login + '</td>' +
                         '<td>' + rls + '</td>' +
                         '</tr>';
-                    $('#tabUserPanel tbody').empty().append(str);
+                    $('#currentUserTableBody tbody').empty().append(str);
                 });
         });
 }
 
 function getTableAllUsers() {
-    fetch('http://localhost:8088/api/admin').then(
+    fetch('http://localhost:8088/api/users/').then(
         response => {
             response.json().then(
                 data => {
@@ -56,11 +56,11 @@ function getTableAllUsers() {
 }
 
 function getModalEdit(id) {
-    $.get("/api/admin" + id, function (usr) {
+    $.get("/api/users" + id, function (usr) {
         console.log(id)
         $('#idEdit').val(usr.id)
         $('#nameEdit').val(usr.name);
-        $('#lastname').val(usr.lastname);
+        $('#lastnameEdit').val(usr.lastname);
         $('#ageEdit').val(usr.age);
         $('#loginEdit').val(usr.login);
         $('#passwordEdit').val(usr.password);
@@ -68,7 +68,7 @@ function getModalEdit(id) {
 }
 
 function getModalDelete(id) {
-    $.get("/api/admin/" + id, function (usr) {
+    $.get("/api/users/" + id, function (usr) {
         $('#idDelete').val(id);
         $('#nameDelete').val(usr.name);
         $('#lastnameDelete').val(usr.lastname);
@@ -80,7 +80,7 @@ function getModalDelete(id) {
 
 $('#formNewUser').submit(function () {
     $.post(
-        '/api/admin',
+        '/api/users',
         $('#formNewUser').serialize(),
         function (newUser) {
             document.location.href = newUser;
@@ -89,8 +89,8 @@ $('#formNewUser').submit(function () {
 });
 
 $('#formEditUser').submit(function () {
-    $.post(
-        '/api/admin',
+    $.put(
+        '/api/users',
         $('#formEditUser').serialize(),
         function (editUser) {
             document.location.href = editUser;
@@ -101,7 +101,7 @@ $('#formEditUser').submit(function () {
 $('#buttonDelete').click(function () {
     let id = $('#idDelete').val();
     $.ajax({
-        url: '/api/admin' + id,
+        url: '/api/users' + id,
         type: 'DELETE',
         dataType: 'text',
     }).done(() => {

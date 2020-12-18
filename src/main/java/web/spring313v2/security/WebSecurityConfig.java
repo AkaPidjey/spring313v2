@@ -2,6 +2,7 @@ package web.spring313v2.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -28,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin()
                 // указываем страницу с формой логина
-                .loginPage("/")
+                .loginPage("/login")
                 //указываем логику обработки при логине
                 .successHandler(new LoginSuccessHandler())
                 // указываем action с формы логина
@@ -53,11 +54,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // делаем страницу регистрации недоступной для авторизированных пользователей
                 .authorizeRequests()
                 //страницы аутентификаци доступна всем
-                .antMatchers("/api/users/**").hasRole("ADMIN")
-                .antMatchers("/api/user/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/api/**").hasRole("ADMIN")
+                .antMatchers("/api/getUser").hasAnyRole("USER", "ADMIN")
                 .antMatchers("/login").anonymous();
                 // защищенные URL
 //                .antMatchers("/new_user").permitAll().anyRequest().authenticated();
+
+
+
+//                .csrf().disable()
+//                .authorizeRequests()
+//                .antMatchers("/").hasAnyRole("USER", "ADMIN")
+//                .antMatchers("/api/**").hasRole("ADMIN")
+//                .antMatchers("/api/getUser").hasAnyRole("USER", "ADMIN")
+//                .anyRequest()
+//                .authenticated()
+//                .and()
+//                .formLogin()
+//                .loginPage("/login")
+//                .defaultSuccessUrl("/")
+//                .failureUrl("/login")
+//                .permitAll();
+
     }
 
     @Bean

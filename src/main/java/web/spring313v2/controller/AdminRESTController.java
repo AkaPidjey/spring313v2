@@ -18,37 +18,50 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api")
 public class AdminRESTController {
 
     @Autowired
     private UserService userService;
 
-
-
     @GetMapping("/getUser")
-    public ResponseEntity<UserDto> getCurrentUserInfo(Authentication authentication) {
-
-        return new ResponseEntity<>(UserMapper.toDto(
-                userService.getUserByLogin(authentication.getName()).get()), HttpStatus.OK);
+    public User userInfo() {
+        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
-    @GetMapping("/{id}")
+//    @GetMapping("/getUser")
+//    public ResponseEntity<UserDto> getCurrentUserInfo() {
+//
+//        return new ResponseEntity<>(UserMapper.toDto(
+//                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()), HttpStatus.OK);
+//    }
+
+//    @GetMapping("/getUser")
+//    public ResponseEntity<UserDto> getCurrentUserInfo(Authentication authentication) {
+//
+//        return new ResponseEntity<>(UserMapper.toDto(
+//                userService.getUserByLogin(authentication.getName()).get()), HttpStatus.OK);
+//    }
+
+    @GetMapping("/users/{id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable("id") Long id) {
 
         return new ResponseEntity<>(UserMapper.toDto(userService.getUserById(id).get()), HttpStatus.OK);
     }
 
-    @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
-        final List<User> allUsers = userService.getAllUsers();
+    @GetMapping("/users")
+    public ResponseEntity<List<UserDto>> getAllUsers() {
 
-        return allUsers != null && !allUsers.isEmpty()
-                ? new ResponseEntity<>(allUsers, HttpStatus.OK)
-                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(UserMapper.toDto(userService.getAllUsers()), HttpStatus.OK);
+
+//        final List<User> allUsers = userService.getAllUsers();
+//
+//        return allUsers != null && !allUsers.isEmpty()
+//                ? new ResponseEntity<>(allUsers, HttpStatus.OK)
+//                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping
+    @PostMapping("/users")
     public ResponseEntity<UserDto> createNewUser(@RequestBody UserDto userDto,
                                                  @RequestParam("role_1") String role) {
         User user = UserMapper.toModel(userDto);
@@ -65,7 +78,7 @@ public class AdminRESTController {
         return new ResponseEntity<>(UserMapper.toDto(user), HttpStatus.OK);
     }
 
-    @PutMapping
+    @PutMapping("/users")
     public ResponseEntity<UserDto> editUser(@RequestBody UserDto userDto,
                                       @RequestParam("role_2") String role) {
         User user = UserMapper.toModel(userDto);
@@ -82,7 +95,7 @@ public class AdminRESTController {
         return new ResponseEntity<>(UserMapper.toDto(user), HttpStatus.OK);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/users")
     public ResponseEntity<Void> deleteUser(@PathVariable("id") Long id) {
         userService.deleteUserById(id);
 

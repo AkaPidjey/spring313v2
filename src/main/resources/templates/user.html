@@ -16,9 +16,9 @@
 
 <body>
 
-<div class="d-flex bg-dark" th:object="${user}">
-    <div class="p-2 text-white font-weight-bold" th:text="${user.login}"></div>
-    <div class="p-2 w-100 text-white" th:each="role:${user.getRoles()}"
+<div class="d-flex bg-dark" th:object="${userLogin}">
+    <div class="p-2 text-white font-weight-bold" th:text="${userLogin.login}"></div>
+    <div class="p-2 w-100 text-white" th:each="role:${userLogin.getRoles()}"
          th:text="'with roles: ' + ${role.name}" ></div>
     <a class="p-2 text-secondary text-right text-decoration-none" th:href="@{/logout}"> Logout </a>
 </div>
@@ -39,9 +39,9 @@
         <div class="tab-content bg-light p-2">
             <div class="tab-pane fade show active pl-3"
                  style="height: 700px;"
-                 id="user_panel"
+                 id="currentUserTable"
                  role="tabpanel"
-                 aria-labelledby="user_panel">
+                 aria-labelledby="currentUserTable">
                 <h3>User information-page</h3>
                 <div class="pl-3 pt-1 d-flex border-top border-left border-right"><h6> About user</h6></div>
                 <div class="bg-white border p-3">
@@ -56,19 +56,19 @@
                             <th>Role</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr th:object="${user}">
-                            <td th:utext="${user.id}"></td>
-                            <td th:utext="${user.name}"></td>
-                            <td th:utext="${user.lastname}"></td>
-                            <td th:utext="${user.age}"></td>
-                            <td th:utext="${user.login}"></td>
-                            <td>
-                                <th:block th:each="role : ${user.roles}">
-                                    <a th:text="${role.name}"></a>
-                                </th:block>
-                            </td>
-                        </tr>
+                        <tbody id="getUserTable">
+<!--                        <tr th:object="${currentUser}">-->
+<!--                            <td th:utext="${currentUser.id}"></td>-->
+<!--                            <td th:utext="${currentUser.name}"></td>-->
+<!--                            <td th:utext="${currentUser.lastname}"></td>-->
+<!--                            <td th:utext="${currentUser.age}"></td>-->
+<!--                            <td th:utext="${currentUser.login}"></td>-->
+<!--                            <td>-->
+<!--                                <th:block th:each="role : ${currentUser.roles}">-->
+<!--                                    <a th:text="${role.name}"></a>-->
+<!--                                </th:block>-->
+<!--                            </td>-->
+<!--                        </tr>-->
                         </tbody>
                     </table>
                 </div>
@@ -84,7 +84,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
         integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
         crossorigin="anonymous"></script>
-<script th:src="admin.js"></script>
+<script th:src="getUser.js"></script>
 
 </body>
 </html>
