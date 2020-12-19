@@ -1,6 +1,6 @@
 function getUser() {
 
-    fetch("http://localhost:8088/getUser").then((res) => res.json())
+    fetch("http://localhost:8088/api/getUser").then((res) => res.json())
         .then((user) => {
             let userRoles = "";
             for (let i = 0; i < user.roles.length; i++) {
@@ -23,7 +23,7 @@ function getUser() {
 }
 
 
-//
+
 // function getHeader() {
 //     fetch(url).then((res) => res.json())
 //         .then((user) => {
@@ -32,7 +32,7 @@ function getUser() {
 //                 userRoles += `${user.roles[i].role} `
 //             }
 //             let output = "";
-//             output += `${user.mail} with roles: ${userRoles}`;
+//             output += `${user.login} with roles: ${userRoles}`;
 //             document.getElementById("gHed").innerHTML = output;
 //         })
 // }

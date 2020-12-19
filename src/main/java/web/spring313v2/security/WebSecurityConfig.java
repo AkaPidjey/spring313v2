@@ -50,14 +50,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //выклчаем кроссдоменную секьюрность (на этапе обучения неважна)
                 .and().csrf().disable();
 
-        http
-                // делаем страницу регистрации недоступной для авторизированных пользователей
-                .authorizeRequests()
-                //страницы аутентификаци доступна всем
-                .antMatchers("/api/**").hasRole("ADMIN")
-                .antMatchers("/api/getUser").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/login").anonymous();
-                // защищенные URL
+        http.authorizeRequests().antMatchers("/login").anonymous()
+                .antMatchers("/api/users/**").hasAuthority("ADMIN")
+                .antMatchers("/api/users/getUser").hasAnyAuthority("ADMIN", "USER")
+                .anyRequest().authenticated()
+                .and().formLogin().successHandler(new LoginSuccessHandler());
+
+
+
+
+//        http
+//                // делаем страницу регистрации недоступной для авторизированных пользователей
+//                .authorizeRequests()
+//                //страницы аутентификаци доступна всем
+//                .antMatchers("/api/**").hasRole("ADMIN")
+//                .antMatchers("/api/getUser").hasAnyRole("USER", "ADMIN")
+//                .antMatchers("/login").anonymous();
+//                // защищенные URL
 //                .antMatchers("/new_user").permitAll().anyRequest().authenticated();
 
 

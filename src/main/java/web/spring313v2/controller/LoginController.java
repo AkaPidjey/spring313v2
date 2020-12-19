@@ -26,16 +26,16 @@ public class LoginController {
     public String login() {
         return "login";
     }
-//
-//    @GetMapping(value = {"/admin"})
-//    public String admin() {
-//        return "admin";
-//    }
-//
-//    @GetMapping(value = {"/user"})
-//    public String user() {
-//        return "user";
-//    }
+
+    @GetMapping(value = {"/admin"})
+    public String admin() {
+        return "admin";
+    }
+
+    @GetMapping(value = {"/user"})
+    public String user() {
+        return "user";
+    }
 
 //    @GetMapping("/")
 //    public String main(Model model, Authentication authentication) {
@@ -45,24 +45,24 @@ public class LoginController {
 //    }
 
 
-    @GetMapping("/admin")
-    public ModelAndView showUser() {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("user");
-        modelAndView.addObject("userLogin", user);
-        return modelAndView;
-    }
-
-    @GetMapping("/user")
-    public ModelAndView showAdmin() {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("admin");
-        modelAndView.addObject("adminLogin", user);
-        modelAndView.addObject(user);
-        return modelAndView;
-    }
+//    @GetMapping("/user")
+//    public ModelAndView showUser() {
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("user");
+//        modelAndView.addObject("userLogin", user);
+//        return modelAndView;
+//    }
+//
+//    @GetMapping("/admin")
+//    public ModelAndView showAdmin() {
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("admin");
+//        modelAndView.addObject("adminLogin", user);
+//        modelAndView.addObject(user);
+//        return modelAndView;
+//    }
 
 
 }
