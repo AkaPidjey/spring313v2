@@ -1,5 +1,5 @@
 function getUsers() {
-    fetch("http://localhost:8088/api/users/")
+    fetch("http://localhost:8088/allUsers")
         .then((res) => res.json())
         .then((data) => {
             let output = "";

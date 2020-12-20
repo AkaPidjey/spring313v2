@@ -16,15 +16,11 @@
 
 <body>
 
-<!--Header form with roles-->
+Header form with roles
 <header>
     <nav class="navbar navbar-dark  bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
-            <span th:text="${currentUser.login}"></span>
-            <span>  with role: </span>
-            <span th:each="role:${currentUser.getRoles()}"
-                  th:text="${role.name} + '    ' "></span>
-        </a>
+        <span class="navbar-brand col-sm-3 col-md-2 mr-0"
+              id="headerLogo"></span>
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
                 <a class="nav-link" th:href="@{/logout}">Logout</a>
@@ -32,6 +28,22 @@
         </ul>
     </nav>
 </header>
+
+<!--<header>-->
+<!--    <nav class="navbar navbar-dark  bg-dark flex-md-nowrap p-0 shadow">-->
+<!--        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">-->
+<!--            <span th:text="${currentUser.login}"></span>-->
+<!--            <span>  with role: </span>-->
+<!--            <span th:each="role:${currentUser.getRoles()}"-->
+<!--                  th:text="${role.name} + '    ' "></span>-->
+<!--        </a>-->
+<!--        <ul class="navbar-nav px-3">-->
+<!--            <li class="nav-item text-nowrap">-->
+<!--                <a class="nav-link" th:href="@{/logout}">Logout</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </nav>-->
+<!--</header>-->
 
 <main>
 
@@ -78,6 +90,7 @@
                                    href="#tabNewUser">New User</a>
                             </div>
                         </nav>
+
                         <div class="tab-content">
                             <div class="tab-pane fade show active border"
                                  id="tabAllUsers"
@@ -117,7 +130,7 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title"
-                                                id="TitleModalLabel_1">Edit user</h5>
+                                                id="titleModalLabel_1">Edit user</h5>
                                             <button type="button"
                                                     class="close"
                                                     data-dismiss="modal"
@@ -153,7 +166,6 @@
                                                     <input class="form-control form-control-sm"
                                                            type="text"
                                                            name="lastname"
-
                                                            id="lastnameEdit"
                                                            placeholder="Lastname">
                                                 </p>
@@ -162,7 +174,6 @@
                                                     <input class="form-control form-control-sm"
                                                            type="number"
                                                            name="age"
-
                                                            id="ageEdit"
                                                            placeholder="Age">
                                                 </p>
@@ -223,7 +234,7 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title"
-                                                id="TitleModalLabel_2">Delete user</h5>
+                                                id="titleModalLabel_2">Delete user</h5>
                                             <button type="button"
                                                     class="close"
                                                     data-dismiss="modal"
@@ -240,7 +251,7 @@
                                                     <label for="idDelete">ID</label>
                                                     <input class="form-control form-control-sm"
                                                            type="text"
-                                                           name="id"
+                                                           name="idDelete"
                                                            id="idDelete"
                                                            readonly>
                                                 </p>
@@ -248,7 +259,7 @@
                                                     <label for="nameDelete">Name</label>
                                                     <input class="form-control form-control-sm"
                                                            type="text"
-                                                           name="name"
+                                                           name="nameDelete"
                                                            id="nameDelete"
                                                            readonly
                                                            placeholder="Name"
@@ -258,7 +269,7 @@
                                                     <label for="lastnameDelete">Lastname</label>
                                                     <input class="form-control form-control-sm"
                                                            type="text"
-                                                           name="lastname"
+                                                           name="lastnameDelete"
                                                            id="lastnameDelete"
                                                            readonly
                                                            placeholder="Lastname">
@@ -267,7 +278,7 @@
                                                     <label for="ageDelete">Age</label>
                                                     <input class="form-control form-control-sm"
                                                            type="number"
-                                                           name="age"
+                                                           name="ageDelete"
                                                            id="ageDelete"
                                                            readonly
                                                            placeholder="Age">
@@ -276,7 +287,7 @@
                                                     <label for="loginDelete">Login</label>
                                                     <input class="form-control form-control-sm"
                                                            type="text"
-                                                           name="login"
+                                                           name="loginDelete"
                                                            id="loginDelete"
                                                            readonly
                                                            placeholder="Login">
@@ -285,7 +296,7 @@
                                                     <label for="passwordDelete">Password</label>
                                                     <input class="form-control form-control-sm"
                                                            type="password"
-                                                           name="password"
+                                                           name="passwordDelete"
                                                            id="passwordDelete"
                                                            readonly
                                                            placeholder="Password">
@@ -329,7 +340,7 @@
                                             <label for="newName">Name</label>
                                             <input class="form-control form-control-sm"
                                                    type="text"
-                                                   name="name"
+                                                   name="newName"
                                                    id="newName"
                                                    placeholder="Name"
                                                    required
@@ -339,7 +350,7 @@
                                             <label for="newLastname">Lastname</label>
                                             <input class="form-control form-control-sm"
                                                    type="text"
-                                                   name="lastname"
+                                                   name="newLastname"
                                                    id="newLastname"
                                                    placeholder="Lastname">
                                         </p>
@@ -347,7 +358,7 @@
                                             <label for="newAge">Age</label>
                                             <input class="form-control form-control-sm"
                                                    type="number"
-                                                   name="age"
+                                                   name="newAge"
                                                    id="newAge"
                                                    placeholder="Age"
                                                    value="">
@@ -356,7 +367,7 @@
                                             <label for="newLogin">Login</label>
                                             <input class="form-control form-control-sm"
                                                    type="text"
-                                                   name="login"
+                                                   name="newLogin"
                                                    id="newLogin"
                                                    placeholder="Login"
                                                    required>
@@ -365,7 +376,7 @@
                                             <label for="newPassword">Password</label>
                                             <input class="form-control form-control-sm"
                                                    type="password"
-                                                   name="password"
+                                                   name="newPassword"
                                                    id="newPassword"
                                                    placeholder="Password"
                                                    required>
@@ -409,7 +420,7 @@
                                     <th>Role</th>
                                 </tr>
                                 </thead>
-                                <tbody id="getUser">
+                                <tbody id="getUserTable">
                                 </tbody>
                             </table>
                         </div>

@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import web.spring313v2.DTO.UserDto;
 import web.spring313v2.DTO.UserMapper;
 import web.spring313v2.model.Role;
@@ -18,29 +19,23 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/api")
+//@RequestMapping("/admin")
 public class AdminRESTController {
 
     @Autowired
     private UserService userService;
 
     @GetMapping("/getUser")
-    public User userInfo() {
-        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public ResponseEntity<UserDto> showInfoAdmin() {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return new ResponseEntity<>(UserMapper.toDto(user), HttpStatus.OK);
     }
 
-//    @GetMapping("/getUser")
-//    public ResponseEntity<UserDto> getCurrentUserInfo() {
-//
-//        return new ResponseEntity<>(UserMapper.toDto(
-//                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()), HttpStatus.OK);
-//    }
 
-//    @GetMapping("/getUser")
-//    public ResponseEntity<UserDto> getCurrentUserInfo(Authentication authentication) {
-//
-//        return new ResponseEntity<>(UserMapper.toDto(
-//                userService.getUserByLogin(authentication.getName()).get()), HttpStatus.OK);
+//    @GetMapping("/user")
+//    public ResponseEntity<UserDto> userAbout() {
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        return new ResponseEntity<>(UserMapper.toDto(user), HttpStatus.OK);
 //    }
 
     @GetMapping("/users/{id}")
@@ -49,19 +44,13 @@ public class AdminRESTController {
         return new ResponseEntity<>(UserMapper.toDto(userService.getUserById(id).get()), HttpStatus.OK);
     }
 
-    @GetMapping("/users")
+    @GetMapping("/allUsers")
     public ResponseEntity<List<UserDto>> getAllUsers() {
 
         return new ResponseEntity<>(UserMapper.toDto(userService.getAllUsers()), HttpStatus.OK);
-
-//        final List<User> allUsers = userService.getAllUsers();
-//
-//        return allUsers != null && !allUsers.isEmpty()
-//                ? new ResponseEntity<>(allUsers, HttpStatus.OK)
-//                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/users")
+    @PostMapping("/addUser")
     public ResponseEntity<UserDto> createNewUser(@RequestBody UserDto userDto,
                                                  @RequestParam("role_1") String role) {
         User user = UserMapper.toModel(userDto);
@@ -78,7 +67,7 @@ public class AdminRESTController {
         return new ResponseEntity<>(UserMapper.toDto(user), HttpStatus.OK);
     }
 
-    @PutMapping("/users")
+    @PutMapping("/edit")
     public ResponseEntity<UserDto> editUser(@RequestBody UserDto userDto,
                                       @RequestParam("role_2") String role) {
         User user = UserMapper.toModel(userDto);
@@ -95,7 +84,7 @@ public class AdminRESTController {
         return new ResponseEntity<>(UserMapper.toDto(user), HttpStatus.OK);
     }
 
-    @DeleteMapping("/users")
+    @DeleteMapping("/delete")
     public ResponseEntity<Void> deleteUser(@PathVariable("id") Long id) {
         userService.deleteUserById(id);
 
@@ -103,3 +92,19 @@ public class AdminRESTController {
     }
 
 }
+
+
+
+//    @GetMapping("/getUser")
+//    public ResponseEntity<UserDto> getCurrentUserInfo() {
+//
+//        return new ResponseEntity<>(UserMapper.toDto(
+//                (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()), HttpStatus.OK);
+//    }
+
+//    @GetMapping("/getUser")
+//    public ResponseEntity<UserDto> getCurrentUserInfo(Authentication authentication) {
+//
+//        return new ResponseEntity<>(UserMapper.toDto(
+//                userService.getUserByLogin(authentication.getName()).get()), HttpStatus.OK);
+//    }

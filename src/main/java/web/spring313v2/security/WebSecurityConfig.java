@@ -50,9 +50,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //выклчаем кроссдоменную секьюрность (на этапе обучения неважна)
                 .and().csrf().disable();
 
-        http.authorizeRequests().antMatchers("/login").anonymous()
-                .antMatchers("/api/users/**").hasAuthority("ADMIN")
-                .antMatchers("/api/users/getUser").hasAnyAuthority("ADMIN", "USER")
+        http.authorizeRequests()
+                .antMatchers("/login").anonymous()
+                .antMatchers("/admin").hasAuthority("ADMIN")
+                .antMatchers("/user").hasAnyAuthority("USER", "ADMIN")
                 .anyRequest().authenticated()
                 .and().formLogin().successHandler(new LoginSuccessHandler());
 
