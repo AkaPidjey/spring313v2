@@ -1,6 +1,6 @@
 <!doctype html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -16,6 +16,7 @@
 
 <body>
 <!--Header form with roles-->
+
 <header>
     <nav class="navbar navbar-dark  bg-dark flex-md-nowrap p-0 shadow">
         <span class="navbar-brand col-sm-3 col-md-2 mr-0"
@@ -27,6 +28,7 @@
         </ul>
     </nav>
 </header>
+
 <!--<header>-->
 <!--    <div-->
 <!--            class="d-flex bg-dark" th:object="${currentUser}">-->
@@ -47,8 +49,9 @@
                    data-toggle="pill"
                    role="tab"
                    aria-controls="tabUserPanel"
+                   href="#tabUserPanel"
                    aria-selected="true">User</a>
-<!--                   href="#tabUserPanel"-->
+
             </div>
         </div>
 

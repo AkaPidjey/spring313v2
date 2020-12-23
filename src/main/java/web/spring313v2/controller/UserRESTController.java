@@ -6,6 +6,7 @@
 //import org.springframework.security.core.Authentication;
 //import org.springframework.security.core.context.SecurityContextHolder;
 //import org.springframework.stereotype.Controller;
+//import org.springframework.ui.Model;
 //import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.RestController;
 //import org.springframework.web.servlet.ModelAndView;
@@ -21,19 +22,28 @@
 //    @Autowired
 //    private UserService userService;
 //
-//    @GetMapping("/user/about")
-//    public ResponseEntity<User> userAbout() {
+//
+//    @GetMapping("api/user")
+//    public ResponseEntity<User> getCurrentUser() {
 //        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 //        return new ResponseEntity<>(user, HttpStatus.OK);
 //    }
 //
-//}
-
-
-
-
 //
-//    @GetMapping("/currentUser")
-//    public ResponseEntity<UserDto> getCurrentUser(Authentication authentication) {
-//        return ResponseEntity.ok(UserMapper.toDto(userService.getUserByLogin(authentication.getName()).get()));
-//    }
+//
+//
+////    @GetMapping("api/user")
+////    public ResponseEntity<UserDto> getCurrentUser(Model model) {
+////        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+////        model.addAttribute("currentUser", user);
+////        return new ResponseEntity<>(UserMapper.toDto(user), HttpStatus.OK);
+////    }
+//
+//
+////    @GetMapping("/user/about")
+////    public ResponseEntity<User> userAbout() {
+////        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+////        return new ResponseEntity<>(user, HttpStatus.OK);
+////    }
+//
+//}

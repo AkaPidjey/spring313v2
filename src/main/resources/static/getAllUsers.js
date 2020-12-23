@@ -1,5 +1,5 @@
 function getUsers() {
-    fetch("http://localhost:8088/allUsers")
+    fetch("http://localhost:8088/api/admin")
         .then((res) => res.json())
         .then((data) => {
             let output = "";
@@ -7,7 +7,7 @@ function getUsers() {
 
                 let userRoles = "";
                 for (let i = 0; i < user.roles.length; i++){
-                    userRoles+=`${user.roles[i].role} `
+                    userRoles+=`${user.roles[i].name} `
                 }
 
                 output += `
@@ -23,7 +23,7 @@ function getUsers() {
                 <a class="btn btn-info" 
                 role="button"
                 data-toggle="modal" 
-                data-target="#edit" 
+                data-target="#modalEDIT" 
                 id="callModalEdit"  
                 onclick="openModalWindowEdit(${user.id})">Edit</a>
                 </td>
@@ -31,14 +31,14 @@ function getUsers() {
                 <a class="btn btn-danger" 
                 role="button"
                 data-toggle="modal" 
-                data-target="#delete" 
+                data-target="#modalDELETE" 
                 id="delete-post"
                 onclick="openModalWindowDelete(${user.id})">Delete</a>
                 </td>
               </tr>
           `;
             });
-            document.getElementById("getAllUsers").innerHTML = output;
+            document.getElementById("getAllUsersTable").innerHTML = output;
         })
 }
 getUsers()

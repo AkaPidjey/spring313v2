@@ -1,4 +1,4 @@
-document.getElementById("tabNewUser").addEventListener("submit", addNewUser);
+document.getElementById("formNewUser").addEventListener("submit", addNewUser);
 
 function addNewUser(e){
     e.preventDefault();
@@ -11,7 +11,7 @@ function addNewUser(e){
     let roles = setRoles(Array.from(document.getElementById("newRole").selectedOptions)
         .map(option => option.value));
 
-    fetch("http://localhost:8088/api/users", {
+    fetch("http://localhost:8088/api/admin/create", {
         method: "POST",
         headers: {
             "Accept": "application/json, text/plain, */*",
@@ -29,7 +29,7 @@ function addNewUser(e){
         .finally(() => {
             document.getElementById("idUsersTable").click();
             getUsers();
-            document.getElementById("tabNewUser").reset();
+            document.getElementById("formNewUser").reset();
         })
 }
 
