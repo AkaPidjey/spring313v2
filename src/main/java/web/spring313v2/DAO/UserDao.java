@@ -1,7 +1,5 @@
 package web.spring313v2.DAO;
 
-
-
 import web.spring313v2.model.Role;
 import web.spring313v2.model.User;
 

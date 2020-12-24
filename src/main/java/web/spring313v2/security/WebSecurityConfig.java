@@ -2,7 +2,6 @@ package web.spring313v2.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -29,8 +28,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .userDetailsService(userDetailsService);
+        auth.userDetailsService(userDetailsService);
     }
 
 
@@ -64,23 +62,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/login").anonymous()
                     .antMatchers("/api/user").hasAnyRole("USER", "ADMIN")
                     .antMatchers("/api/**").hasRole("ADMIN")
-
                     .anyRequest().authenticated();
 
-
-
-        }
+    }
 }
 
 
 
-//
-//        http.authorizeRequests()
-//                .antMatchers("/login").anonymous()
-//                .antMatchers("/admin/**").hasAuthority("ADMIN")
-//                .antMatchers("/user").hasAnyAuthority("USER", "ADMIN")
-//                .anyRequest().authenticated()
-//                .and().formLogin().successHandler(new LoginSuccessHandler());
 
 
 
@@ -90,72 +78,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
-//        http
-//                // делаем страницу регистрации недоступной для авторизированных пользователей
-//                .authorizeRequests()
-//                //страницы аутентификаци доступна всем
-//                .antMatchers("/login")
-//                .anonymous()
-//                // защищенные URL
-//                .antMatchers("/admin/**", "/admin/").access("hasAuthority('ADMIN')")
-//                .antMatchers("/user", "/user/").access("hasAnyAuthority('USER','ADMIN')")
-//                .anyRequest()
-//                .authenticated();
 
 
 
 
-
-
-
-
-
-//        http
-//                // делаем страницу регистрации недоступной для авторизированных пользователей
-//                .authorizeRequests()
-//                //страницы аутентификаци доступна всем
-//                .antMatchers("/api/**").hasRole("ADMIN")
-//                .antMatchers("/api/getUser").hasAnyRole("USER", "ADMIN")
-//                .antMatchers("/login").anonymous();
-//                // защищенные URL
-//                .antMatchers("/new_user").permitAll().anyRequest().authenticated();
-
-
-
-//                .csrf().disable()
-//                .authorizeRequests()
-//                .antMatchers("/").hasAnyRole("USER", "ADMIN")
-//                .antMatchers("/api/**").hasRole("ADMIN")
-//                .antMatchers("/api/getUser").hasAnyRole("USER", "ADMIN")
-//                .anyRequest()
-//                .authenticated()
-//                .and()
-//                .formLogin()
-//                .loginPage("/login")
-//                .defaultSuccessUrl("/")
-//                .failureUrl("/login")
-//                .permitAll();
-
-
-
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http
-//                .csrf().disable()
-//                .authorizeRequests()
-//                .antMatchers("/").hasAnyRole("USER", "ADMIN")
-//                .antMatchers("/admin/**").hasRole("ADMIN")
-//                .antMatchers(HttpMethod.GET, "/users", "/users/**").hasAnyRole("USER", "ADMIN")
-//                .antMatchers(HttpMethod.PUT, "/users", "/users/**").hasAnyRole("ADMIN")
-//                .antMatchers(HttpMethod.POST, "/users", "/users/**").hasAnyRole("ADMIN")
-//                .antMatchers(HttpMethod.DELETE, "/users", "/users/**").hasAnyRole("ADMIN")
-//                .anyRequest()
-//                .authenticated()
-//                .and()
-//                .formLogin()
-//                .loginPage("/login")
-//                .defaultSuccessUrl("/")
-//                .failureUrl("/login")
-//                .permitAll();
-//    }
 

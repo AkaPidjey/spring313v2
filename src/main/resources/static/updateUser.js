@@ -8,7 +8,6 @@ function updatePost() {
     let age = document.getElementById("ageEdit").value;
     let login = document.getElementById("loginEdit").value;
     let password = document.getElementById("passwordEdit").value;
-    // let passwordReal = document.getElementById("passwordEdit").value;
     let roles = setRoles(Array.from(document.getElementById("roleEdit").selectedOptions)
         .map(option => option.value));
 
