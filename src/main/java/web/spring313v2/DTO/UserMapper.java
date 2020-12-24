@@ -11,6 +11,7 @@ public class UserMapper {
 
     public static User toModel(UserDto dto) {
         User user = new User();
+        user.setId(dto.getId());
         user.setName(dto.getName());
         user.setLastname(dto.getLastname());
         user.setAge(dto.getAge());

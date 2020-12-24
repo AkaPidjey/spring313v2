@@ -50,6 +50,13 @@ public class AdminRESTController {
         return new ResponseEntity<>(UserMapper.toDto(user), HttpStatus.CREATED);
     }
 
+    @PutMapping("/admin/update")
+    public ResponseEntity<UserDto> editUser(@RequestBody UserDto userDto) {
+        User user = UserMapper.toModel(userDto);
+        userService.editUser(user);
+        return new ResponseEntity<>(UserMapper.toDto(user), HttpStatus.OK);
+    }
+
     @DeleteMapping("/admin/delete/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable("id") Long id) {
         userService.deleteUserById(id);
@@ -60,12 +67,7 @@ public class AdminRESTController {
 
 
 
-    @PutMapping("/admin/update")
-    public ResponseEntity<UserDto> editUser(@RequestBody UserDto userDto) {
-        User user = UserMapper.toModel(userDto);
-        userService.editUser(user);
-        return new ResponseEntity<>(UserMapper.toDto(user), HttpStatus.OK);
-    }
+
 
 
 

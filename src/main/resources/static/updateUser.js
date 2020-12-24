@@ -1,7 +1,6 @@
 document.getElementById("formEditUser").addEventListener("submit", updatePost)
 
-function updatePost(e) {
-    e.preventDefault();
+function updatePost() {
 
     let id = document.getElementById("idEdit").value;
     let name = document.getElementById("nameEdit").value;
@@ -31,7 +30,7 @@ function updatePost(e) {
             roles:roles
         })
     }).finally(() => {
-        $('#modalEDIT').modal("hide")
+        $('#modalEDIT').remove()
         getUsers();
     })
 }

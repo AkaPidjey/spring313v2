@@ -30,7 +30,7 @@ function updatePost() {
             roles:roles
         })
     }).finally(() => {
-        $('#modalEDIT').modal("hide")
+        $('#modalEDIT').remove()
         getUsers();
     })
 }
