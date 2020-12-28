@@ -1,4 +1,4 @@
-package web.spring313v2.DAO;
+package web.spring313v2.dao;
 
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Repository;

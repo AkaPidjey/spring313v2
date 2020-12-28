@@ -1,4 +1,4 @@
-package web.spring313v2.DTO;
+package web.spring313v2.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import web.spring313v2.DAO.UserDao;
+import web.spring313v2.dao.UserDao;
 import web.spring313v2.model.Role;
 import web.spring313v2.model.User;
 

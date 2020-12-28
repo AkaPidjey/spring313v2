@@ -1,4 +1,4 @@
-package web.spring313v2.DTO;
+package web.spring313v2.dto;
 
 import web.spring313v2.model.User;
 
